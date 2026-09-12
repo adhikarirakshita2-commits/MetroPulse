@@ -1,23 +1,31 @@
 from pathlib import Path
 import requests
 
-RAW_DATA_FOLDER = Path("data/raw")
-RAW_DATA_FOLDER.mkdir(parents=True, exist_ok=True)
+OUTPUT_FOLDER = Path("data/raw")
+OUTPUT_FILE = OUTPUT_FOLDER / "mta_subway_hourly_ridership_2024.csv"
 
-URL = "https://data.ny.gov/api/views/wujg-7c2s/rows.csv?accessType=DOWNLOAD"
+URL = "https://data.ny.gov/api/v3/views/wujg-7c2s/export.csv?accessType=DOWNLOAD"
 
-OUTPUT_FILE = RAW_DATA_FOLDER / "mta_subway_hourly_2024.csv"
+OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
 
 if OUTPUT_FILE.exists():
-    print("Subway data already exists. Skipping download.")
+    print("MTA subway data already exists.")
 else:
-    response = requests.get(URL, timeout=120)
+    print("Downloading MTA subway ridership data...")
+
+    response = requests.get(
+        URL,
+        timeout=120,
+        headers={
+            "User-Agent": "MetroPulse Data Analysis Project"
+        }
+    )
+
     response.raise_for_status()
 
-    with open(OUTPUT_FILE, "wb") as file:
-        file.write(response.content)
+    OUTPUT_FILE.write_bytes(response.content)
 
-    print("Subway data downloaded.")
+    print("MTA subway data downloaded.")
 
-print("File:", OUTPUT_FILE)
-print("Size:", OUTPUT_FILE.stat().st_size, "bytes")
+print(f"File: {OUTPUT_FILE}")
+print(f"Size: {OUTPUT_FILE.stat().st_size:,} bytes")

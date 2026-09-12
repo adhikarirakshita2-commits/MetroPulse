@@ -3,9 +3,14 @@ import duckdb
 connection = duckdb.connect("data/processed/metropulse.duckdb")
 
 with open("sql/marts/core_metrics.sql", "r") as file:
-    sql_code = file.read()
+    core_sql = file.read()
 
-connection.execute(sql_code)
+connection.execute(core_sql)
+
+with open("sql/marts/quality_metrics.sql", "r") as file:
+    quality_sql = file.read()
+
+connection.execute(quality_sql)
 
 tables = [
     "mart_daily_metrics",
@@ -14,6 +19,7 @@ tables = [
     "mart_payment_metrics",
     "mart_airport_metrics",
     "mart_quality_metrics",
+    "mart_quality_issues",
     "mart_day_metrics"
 ]
 
