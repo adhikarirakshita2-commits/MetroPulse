@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-DB_PATH = BASE_DIR / "data" / "processed" / "metropulse.duckdb"
+DB_PATH = BASE_DIR / "data" / "processed" / "dashboard.duckdb"
 
 con = duckdb.connect(str(DB_PATH), read_only=True)
 
@@ -63,7 +63,7 @@ zones = load_data(
     """
     SELECT
         z.pickup_zone_id,
-        d.zone_name AS zone_name,
+        z.zone_name AS zone_name,
         z.trips,
         z.passengers,
         z.total_amount,
@@ -71,8 +71,6 @@ zones = load_data(
         z.avg_duration,
         z.avg_fare_per_mile
     FROM mart_zone_metrics z
-    LEFT JOIN dim_taxi_zone d
-        ON z.pickup_zone_id = d.location_id
     ORDER BY z.trips DESC
     """
 )
@@ -118,16 +116,15 @@ weather = load_data(
 
 period_records = load_data(
     """
-    SELECT COUNT(*) AS records
-    FROM filtered_taxi_trips
+    SELECT period_records AS records
+    FROM dashboard_quality_summary
     """
 )["records"].iloc[0]
 
 usable_records = load_data(
     """
-    SELECT COUNT(*) AS records
-    FROM int_taxi_trips
-    WHERE usable_for_core_metrics = 1
+    SELECT usable_records AS records
+    FROM dashboard_quality_summary
     """
 )["records"].iloc[0]
 
