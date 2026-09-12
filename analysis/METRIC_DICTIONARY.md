@@ -40,6 +40,10 @@ Calculation:
 
 `SUM(passenger_count)`
 
+Unit:
+
+Reported passenger count.
+
 Caution:
 
 Passenger count contains quality issues and should be interpreted as reported passenger information rather than independently verified occupancy.
@@ -115,6 +119,22 @@ Unit:
 USD per trip.
 
 Median is used as a sensitivity measure because trip amounts are not necessarily normally distributed.
+
+## Trip Amount Percentiles
+
+Definition:
+
+Selected percentile values of charged amount across usable taxi trips.
+
+Calculation:
+
+P50, P75, P90 and P95 of `total_amount`.
+
+Unit:
+
+USD per trip.
+
+Percentiles are used to describe the distribution and reduce reliance on the average alone.
 
 ## Average Trip Distance
 
@@ -282,6 +302,8 @@ Join:
 
 Taxi pickup timestamp truncated to the hour is matched with the weather timestamp.
 
+Weather findings are observational and do not establish causality.
+
 ## Rain Category
 
 Definitions:
@@ -293,8 +315,6 @@ Definitions:
 Unit:
 
 Millimetres of precipitation per hour.
-
-Weather findings are observational and do not establish causality.
 
 ## Data Quality Exclusion Rate
 
@@ -309,6 +329,14 @@ Calculation:
 Observed value:
 
 3.98%.
+
+## Quality Exclusion Impact
+
+Definition:
+
+The difference between KPI results calculated using all required-period records and results calculated using usable records only.
+
+The project reports the number and percentage of excluded records and their contribution to key measures such as total amount and total distance.
 
 ## Statistical Difference
 
@@ -352,7 +380,7 @@ The following conditions cause exclusion from core KPI calculations:
 
 - Invalid timestamp
 - Zero or negative distance
-- Zero or negative passenger count
+- Invalid passenger count
 - Zero or negative fare
 - Negative total amount
 - Negative tip amount
