@@ -1,3 +1,4 @@
 data/processed/*
 !data/processed/
 !data/processed/dashboard.duckdb
+data/raw/
