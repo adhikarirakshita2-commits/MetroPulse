@@ -25,25 +25,28 @@ Run a four-week pilot targeting driver supply during high-demand airport windows
 
 Evidence:
 
-- 1,035,243 airport-involved trips.
-- 10.00% of usable trips.
-- $81.66 million in charged amount.
-- 27.52% of total charged amount.
-- $78.88 average charged amount per trip.
-- $23.09 average charged amount for non-airport trips.
-- Statistical comparison found a $55.83 difference in average daily trip amount.
-- 95% bootstrap confidence interval: $55.61 to $56.04.
-- Permutation test: p < 0.001.
+* 1,035,243 airport-involved trips.
+* 10.00% of usable trips.
+* $81.66 million in charged amount.
+* 27.52% of total charged amount.
+* $78.88 average charged amount per trip.
+* $23.09 average charged amount per non-airport trip.
+* Average daily airport trip amount was $78.86 compared with $23.03 for non-airport trips.
+* Difference in average daily airport versus non-airport trip amount: $55.83.
+* 95% bootstrap confidence interval: $55.61 to $56.04.
+* Permutation test: p < 0.001.
 
 Pilot design:
 
-- Unit: Airport pickup/dropoff zone by hour.
-- Treatment: Targeted driver supply incentives during selected high-demand airport windows.
-- Control: Comparable airport windows without the incentive.
-- Primary metric: Completed airport trips per available driver-hour.
-- MDE: Detect a 5% improvement in completed trips per available driver-hour.
-- Guardrails: Passenger wait time, cancellation rate, driver earnings, average trip amount and incentive cost.
-- Decision: Expand if the primary metric improves and guardrails remain within acceptable limits.
+* Unit: Airport pickup/dropoff zone by hour.
+* Treatment: Targeted driver supply incentives during selected high-demand airport windows.
+* Control: Comparable airport windows without the incentive.
+* Primary metric: Completed airport trips per available driver-hour.
+* MDE: Detect a 5% improvement in completed trips per available driver-hour.
+* Sample-size reasoning: The pilot should be sized using the observed baseline variability and a 5% minimum detectable improvement, with enough zone-hour observations to provide adequate precision for the primary metric.
+* Guardrails: Passenger wait time, cancellation rate, driver earnings, average trip amount and incentive cost.
+* Stopping rule: Stop or modify the pilot if predefined guardrails deteriorate beyond acceptable limits.
+* Decision: Expand if the primary metric improves and guardrails remain within acceptable limits.
 
 ## Recommendation 2: High-Demand Zone-Hour Supply
 
@@ -51,25 +54,27 @@ Run a four-week pilot using targeted driver incentives in selected high-demand z
 
 Evidence:
 
-- Top 10 pickup zones account for 37.48% of usable trips.
-- The busiest hour is 18:00 with 735,820 trips.
-- Average daily demand is 113,720 trips.
-- Daily demand ranges from 69,440 to 138,459 trips.
-- Daily coefficient of variation is 12.44%.
-- Thursday averages 127,182 trips compared with 95,881 on Monday.
-- Thursday-Monday difference: 31,301 trips per day.
-- 95% bootstrap confidence interval: 24,895 to 38,057 trips.
-- Permutation test: p < 0.001.
+* Top 10 pickup zones account for 37.48% of usable trips.
+* The busiest hour is 18:00 with 735,820 trips.
+* Average daily demand is 113,720 trips.
+* Daily demand ranges from 69,440 to 138,459 trips.
+* Daily coefficient of variation is 12.44%.
+* Thursday averages 127,182 trips compared with 95,881 on Monday.
+* Thursday-Monday difference: 31,301 trips per day.
+* 95% bootstrap confidence interval: 24,895 to 38,057 trips.
+* Permutation test: p < 0.001.
 
 Pilot design:
 
-- Unit: Zone-hour.
-- Treatment: Targeted driver incentives in selected high-demand zone-hours.
-- Control: Similar zone-hours without the incentive.
-- Primary metric: Completed trips per available driver-hour.
-- MDE: Detect a 5% improvement in completed trips per available driver-hour.
-- Guardrails: Passenger wait time, cancellation rate, driver earnings and incentive cost per trip.
-- Decision: Expand if trip productivity improves without unacceptable guardrail deterioration.
+* Unit: Zone-hour.
+* Treatment: Targeted driver incentives in selected high-demand zone-hours.
+* Control: Similar zone-hours without the incentive.
+* Primary metric: Completed trips per available driver-hour.
+* MDE: Detect a 5% improvement in completed trips per available driver-hour.
+* Sample-size reasoning: The pilot should be sized using the observed baseline variability and a 5% minimum detectable improvement, with enough zone-hour observations to provide adequate precision for the primary metric.
+* Guardrails: Passenger wait time, cancellation rate, driver earnings and incentive cost per trip.
+* Stopping rule: Stop or modify the pilot if predefined guardrails deteriorate beyond acceptable limits.
+* Decision: Expand if trip productivity improves without unacceptable guardrail deterioration.
 
 ## Data Quality and Risk
 
@@ -79,8 +84,8 @@ The required-period dataset contains 10,777,291 records.
 
 The excluded records represent:
 
-- 1.46% of total charged amount.
-- 3.45% of total trip distance.
+* 1.46% of total charged amount.
+* 3.45% of total trip distance.
 
 Average charged amount changes from $27.94 before quality exclusions to $28.67 after exclusions.
 
